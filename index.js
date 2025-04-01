@@ -1,23 +1,31 @@
 // TASK: import helper functions from utils
 // TASK: import initialData
 
+import tasks from "./utils/taskFunctions.js";
+import data from './initialData.js';
+
+
 
 /*************************************************************************************************************************************************
  * FIX BUGS!!!
  * **********************************************************************************************************************************************/
 
 // Function checks if local storage already has data, if not it loads initialData to localStorage
-function initializeData() {
-  if (!localStorage.getItem('tasks')) {
-    localStorage.setItem('tasks', JSON.stringify(initialData)); 
-    localStorage.setItem('showSideBar', 'true')
+function initializeData() { //function contains the code that checks for existing data in local storage and loads initial data if necessary.
+  if (!localStorage.getItem('tasks')) { //if no data is found under the key tasks, condition is true and code inside if statement is executed
+    localStorage.setItem('tasks', JSON.stringify(initialData)); //adds a new item to local storage. sets value associated with key 'tasks' in local storage; converts initialData object into a JSON string => local storages can only store strings.
+    localStorage.setItem('showSideBar', 'true') // adds another item to local storage; sets value associated with the key showSideBar to true, 
   } else {
     console.log('Data already exists in localStorage');
   }
 }
 
+//NOTES:
+//'tasks' is a string literal used as a key to store and retrieve data in local storage. it is a lael or identifier for the data being stored
+
 // TASK: Get elements from the DOM
 const elements = {
+
 
 }
 
@@ -31,7 +39,7 @@ function fetchAndDisplayBoardsAndTasks() {
   displayBoards(boards);
   if (boards.length > 0) {
     const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"))
-    activeBoard = localStorageBoard ? localStorageBoard ;  boards[0]; 
+    activeBoard = localStorageBoard ? localStorageBoard : boards[0]; 
     elements.headerBoardName.textContent = activeBoard
     styleActiveBoard(activeBoard)
     refreshTasksUI();
@@ -47,7 +55,7 @@ function displayBoards(boards) {
     const boardElement = document.createElement("button");
     boardElement.textContent = board;
     boardElement.classList.add("board-btn");
-    boardElement.click()  { 
+    boardElement.click = () => { 
       elements.headerBoardName.textContent = board;
       filterAndDisplayTasksByBoard(board);
       activeBoard = board //assigns active board
@@ -85,9 +93,9 @@ function filterAndDisplayTasksByBoard(boardName) {
       taskElement.setAttribute('data-task-id', task.id);
 
       // Listen for a click event on each task and open a modal
-      taskElement.click() => { 
+      taskElement.click = () => { 
         openEditTaskModal(task);
-      });
+      };
 
       tasksContainer.appendChild(taskElement);
     });
@@ -142,7 +150,7 @@ function addTaskToUI(task) {
 function setupEventListeners() {
   // Cancel editing task event listener
   const cancelEditBtn = document.getElementById('cancel-edit-btn');
-  cancelEditBtn.click() => toggleModal(false, elements.editTaskModal));
+  cancelEditBtn.click = () => ( toggleModal(false, elements.editTaskModal));
 
   // Cancel adding new task event listener
   const cancelAddTaskBtn = document.getElementById('cancel-add-task-btn');
@@ -158,8 +166,8 @@ function setupEventListeners() {
   });
 
   // Show sidebar event listener
-  elements.hideSideBarBtn.click() => toggleSidebar(false));
-  elements.showSideBarBtn.click() => toggleSidebar(true));
+  elements.hideSideBarBtn.click= () => toggleSidebar(false);
+  elements.showSideBarBtn.click = () => toggleSidebar(true);
 
   // Theme switch event listener
   elements.themeSwitch.addEventListener('change', toggleTheme);
@@ -179,7 +187,7 @@ function setupEventListeners() {
 // Toggles tasks modal
 // Task: Fix bugs
 function toggleModal(show, modal = elements.modalWindow) {
-  modal.style.display = show ? 'block' => 'none'; 
+  modal.style.display = show ? 'block' : 'none'; 
 }
 
 /*************************************************************************************************************************************************
@@ -237,7 +245,7 @@ function saveTaskChanges(taskId) {
   // Create an object with the updated task details
 
 
-  // Update task using a hlper functoin
+  // Update task using a hlper function
  
 
   // Close the modal and refresh the UI to reflect the changes
