@@ -25,7 +25,15 @@ function initializeData() { //function contains the code that checks for existin
 
 // TASK: Get elements from the DOM
 const elements = {
-
+headerBoardName: document.getElementById('header-board-name'),
+columnDivs: document.getElementById(''),
+editTaskModal: document.getElementById(''),
+filterDiv: document.getElementById(''),
+hideSideBarBtn: document.getElementById(''),
+showSideBarBtn: document.getElementById(''),
+themeSwitch: document.getElementById(''),
+createNewTaskBtn: document.getElementById(''),
+modalWindow: document.getElementById(''),
 
 }
 
@@ -34,11 +42,12 @@ let activeBoard = ""
 // Extracts unique board names from tasks
 // TASK: FIX BUGS
 function fetchAndDisplayBoardsAndTasks() {
-  const tasks = getTasks();
-  const boards = [...new Set(tasks.map(task => task.board).filter(Boolean))];
+  const tasks = getTasks(); //retrieves the tasks
+  const boards = [...new Set(tasks.map(task => task.board).filter(Boolean))]; //extracts unique board names from the tasks
   displayBoards(boards);
   if (boards.length > 0) {
     const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"))
+    console.log(localStorageBoard)
     activeBoard = localStorageBoard ? localStorageBoard : boards[0]; 
     elements.headerBoardName.textContent = activeBoard
     styleActiveBoard(activeBoard)
