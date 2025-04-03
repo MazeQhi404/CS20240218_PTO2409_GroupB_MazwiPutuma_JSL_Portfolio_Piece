@@ -1,8 +1,8 @@
 // TASK: import helper functions from utils
 // TASK: import initialData
 
-import tasks from "./utils/taskFunctions.js";
-import data from './initialData.js';
+import * as localStorage from "./utils/taskFunctions.js";
+import {initialData} from './initialData.js';
 
 
 
@@ -46,8 +46,7 @@ function fetchAndDisplayBoardsAndTasks() {
   const boards = [...new Set(tasks.map(task => task.board).filter(Boolean))]; //extracts unique board names from the tasks
   displayBoards(boards);
   if (boards.length > 0) {
-    const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"))
-    console.log(localStorageBoard)
+    const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"));
     activeBoard = localStorageBoard ? localStorageBoard : boards[0]; 
     elements.headerBoardName.textContent = activeBoard
     styleActiveBoard(activeBoard)
@@ -276,3 +275,4 @@ function init() {
   document.body.classList.toggle('light-theme', isLightTheme);
   fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
 }
+
