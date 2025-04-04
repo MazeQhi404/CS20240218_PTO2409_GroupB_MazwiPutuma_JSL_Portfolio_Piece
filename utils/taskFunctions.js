@@ -10,7 +10,7 @@ export const getTasks = () => {
 //Conditionl (ternary) operator: determines what value to return; if tasks = truthy(i.e not null, undefined or an empty string), JSON string stored in tasks is parsed into a JavaScript object. if task = falsy, the expression [] is evaluated and returns an empty array.
 
 // Simulate saving tasks to localStorage
-const saveTasks = (tasks) => {
+export const saveTasks = (tasks) => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
@@ -51,3 +51,5 @@ export const deleteTask = (id) => {
   // Previously: location.reload(); Now: We'll refresh the UI instead.
   return updatedTasks; // Optionally return the updated tasks list for further processing
 };
+
+export default {getTasks, saveTasks, deleteTask, putTask, patchTask, createNewTask};

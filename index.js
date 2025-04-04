@@ -1,7 +1,7 @@
 // TASK: import helper functions from utils
 // TASK: import initialData
 
-import * as localStorage from "./utils/taskFunctions.js";
+import taskFunctions from '.utils/taskFunctions.js';
 import {initialData} from './initialData.js';
 
 
@@ -19,6 +19,8 @@ function initializeData() { //function contains the code that checks for existin
     console.log('Data already exists in localStorage');
   }
 }
+
+initializeData();
 
 //NOTES:
 //'tasks' is a string literal used as a key to store and retrieve data in local storage. it is a lael or identifier for the data being stored
