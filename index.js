@@ -199,8 +199,9 @@ function setupEventListeners() {
 
 // Toggles tasks modal
 // Task: Fix bugs
-function toggleModal(show, modal = elements.modalWindow) {
-  modal.style.display = show ? 'block' : 'none'; 
+function toggleModal(show, modal = elements.newTaskModel) {
+
+  elements.newTaskModel.style.display = show ? 'block' : 'none'; 
 }
 
 /*************************************************************************************************************************************************
@@ -246,22 +247,47 @@ function toggleTheme() {
   localStorage.setItem('theme', isLightTheme ? 'light': 'dark')
  
 }
+function getTaskFromLocalStorage(taskId) {
+  const tasks = JSON.parse(localStorage.getItem('tasks'));
+  return tasks.find((task) => task.id === taskId);
+}
 
 
+function openEditTaskModal(taskId) {
+const task = getTaskFromLocalStorage(taskId);
+if (task) {
+ // Set task details in modal inputs
+ const modalTitleInput = document.getElementById('edit-task-title-input');
+ const modalDescriptionInput = document.getElementById('edit-task-desc-input');
+ const modalStatusSelect = document.getElementById('edit-select-status');
 
-function openEditTaskModal(task) {
-  // Set task details in modal inputs
-  const modalTitleInput = document.getElementById('edit-task-title-input');
-  const modalDescriptionInput = document.getElementById('edit-task-desc-input');
-  const modalStatusSelect = document.getElementById('edit-select-status');
+ modalTitleInput.value = task.title;
+ modalDescriptionInput.value = task.description;
+ modalStatusSelect.value = task.status;
 
-  // Get button elements from the task modal
+ // Get button elements from the task modal
+ const saveChangesBtn = document.getElementById('save-task-changes-btn');
+ const deleteTaskBtn = document.getElementById('delete-task-btn');
+ const cancelBtn = document.getElementById('cancel-edit-btn');
 
 
-  // Call saveTaskChanges upon click of Save Changes button
- 
+ // Call saveTaskChanges upon click of Save Changes button
+ saveChangesBtn.onclick = () => saveTaskChanges(task);
 
-  // Delete task using a helper function and close the task modal
+
+ // Delete task using a helper function and close the task modal
+
+ deleteTaskBtn.onclick = () => {
+   deleteTask(task)
+   toggleModel(false, elements.editTaskModal); 
+ };
+
+ cancelBtn.onclick = () => {
+   toggleModel(false, elements.editTaskModal); 
+ }
+
+}
+  
 
 
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
@@ -269,16 +295,24 @@ function openEditTaskModal(task) {
 
 function saveTaskChanges(taskId) {
   // Get new user inputs
-  
+
+  const titleUpdate = document.getElementById('').value;
+  const descriptionUpdate = document.getElementById('').value;
+  const statusUpdate = document.getElementById('').value;
 
   // Create an object with the updated task details
+  const updatedTasks = {
+    title: titleUpdate,
+    description: descriptionUpdate,
+    status: statusUpdate,
+  }
 
 
-  // Update task using a hlper function
- 
+  // Update task using a helper function
+  patchTask(taskId, updatedTasks);
 
   // Close the modal and refresh the UI to reflect the changes
-
+  toggleModal(false, elements.editTaskModal);
   refreshTasksUI();
 }
 
@@ -295,6 +329,7 @@ function init() {
   const isLightTheme = localStorage.getItem('light-theme') === 'enabled';
   document.body.classList.toggle('light-theme', isLightTheme);
   fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
+  openEditTaskModal();
 }
 
 
