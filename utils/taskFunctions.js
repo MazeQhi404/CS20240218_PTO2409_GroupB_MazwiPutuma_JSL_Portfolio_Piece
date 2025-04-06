@@ -52,4 +52,3 @@ export const deleteTask = (id) => {
   return updatedTasks; // Optionally return the updated tasks list for further processing
 };
 
-export default {getTasks, saveTasks, deleteTask, putTask, patchTask, createNewTask};
