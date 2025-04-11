@@ -174,6 +174,7 @@ function setupEventListeners() {
     toggleModal(false, elements.newTaskModal);
     elements.filterDiv.style.display = 'none'; // Also hide the filter overlay
   });
+
  
 
   // Clicking outside the modal to close it
@@ -226,9 +227,6 @@ function addTask(event) {
     };
     const newTask = createNewTask(task);
     if (newTask) {
-      title.value = task.title;
-      description.value = task.description
-      newStatus.value = task.status
       addTaskToUI(newTask);
       toggleModal(false, elements.newTaskModal);
       elements.filterDiv.style.display = 'none'; // Also hide the filter overlay
