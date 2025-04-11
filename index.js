@@ -14,7 +14,7 @@ import {initialData} from './initialData.js';
 function initializeData() { //function contains the code that checks for existing data in local storage and loads initial data if necessary.
   if (!localStorage.getItem('tasks')) { //if no data is found under the key tasks, condition is true and code inside if statement is executed
     localStorage.setItem('tasks', JSON.stringify(initialData)); //adds a new item to local storage. sets value associated with key 'tasks' in local storage; converts initialData object into a JSON string => local storages can only store strings.
-    localStorage.setItem('showSideBar', 'true') // adds another item to local storage; sets value associated with the key showSideBar to true, 
+    localStorage.setItem('showSideBar', true) // adds another item to local storage; sets value associated with the key showSideBar to true, 
   } else {
     console.log('Data already exists in localStorage');
   }
@@ -30,13 +30,13 @@ const elements = {
 headerBoardName: document.getElementById('header-board-name'),
 columnDivs: document.getElementsByClassName('column-div'),
 editTaskModal: document.getElementById('edit-task-modal-window'),
-newTaskModel: document.getElementById('new-task-modal-window'),
+newTaskModal: document.getElementById('new-task-modal-window'), //fixed typo error, newTaskModel to newTaskModal
 filterDiv: document.getElementById('filterDiv'),
 hideSideBarBtn: document.getElementById('hide-side-bar-btn'),
 showSideBarBtn: document.getElementById('show-side-bar-btn'),
 themeSwitch: document.getElementById('switch'),
 createNewTaskBtn: document.getElementById('create-task-btn'),
-modalWindow: document.getElementsByClassName('modal-window'),
+modalWindow: document.querySelector('modal-window'), // fixed error by changing getElementsByClassName to query Selector since former returns a live HTML collection
 
 }
 
@@ -135,13 +135,12 @@ function styleActiveBoard(boardName) {
 
 
 function addTaskToUI(task) {
-  const column = document.querySelectorAll(`.column-div[data-status="${task.status}"]`); 
+  const column = document.querySelector(`.column-div[data-status="${task.status}"]`); 
   if (!column) {
     console.error(`Column not found for status: ${task.status}`);
-    return;
   }
 
-  let tasksContainer = column.querySelectorAll('.tasks-container');
+  let tasksContainer = column.querySelector('.tasks-container');
   if (!tasksContainer) {
     console.warn(`Tasks container not found for status: ${task.status}, creating one.`);
     tasksContainer = document.createElement('div');
