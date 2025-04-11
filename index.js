@@ -281,7 +281,7 @@ if (task) {
 
  // Call saveTaskChanges upon click of Save Changes button
  saveChangesBtn.onclick = () => {
-  saveTaskChanges(taskId);
+  saveTaskChanges(task.id);
 
  } 
 
