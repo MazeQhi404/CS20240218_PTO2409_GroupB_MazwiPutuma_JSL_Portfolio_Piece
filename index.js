@@ -222,7 +222,7 @@ function addTask(event) {
     const task = {
       title: document.getElementById('modal-title-input').value,
       description: document.getElementById('modal-desc-input').value,
-      newStatus: document.getElementById('select-status').value, 
+      status: document.getElementById('select-status').value, 
       board: activeBoard // bug: board assignment was missing   
     };
     const newTask = createNewTask(task);
