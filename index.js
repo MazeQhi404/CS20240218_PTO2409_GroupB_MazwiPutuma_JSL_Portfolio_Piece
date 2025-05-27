@@ -37,6 +37,8 @@ showSideBarBtn: document.getElementById('show-side-bar-btn'),
 themeSwitch: document.getElementById('switch'),
 createNewTaskBtn: document.getElementById('add-new-task-btn'),
 modalWindow: document.querySelector('.modal-window'), // fixed error by changing getElementsByClassName to query Selector since former returns a live HTML collection
+sideLogoLight: document.getElementById('side-logo-div-light'),
+sideLogoDark: document.getElementById('side-logo-div-dark')
 
 }
 
@@ -185,7 +187,7 @@ function setupEventListeners() {
   });
 
   // Show sidebar event listener
-elements.hideSideBarBtn.addEventListener('click', () => toggleSidebar(false));
+  elements.hideSideBarBtn.addEventListener('click', () => toggleSidebar(false));
   elements.showSideBarBtn.addEventListener('click', () => toggleSidebar(true));
 
   // Theme switch event listener
@@ -250,10 +252,13 @@ function toggleSidebar(show) {
 
 function toggleTheme() {
   const body = document.body; // references to body element
-  body.classList.toggle('light-theme')
+  body.classList.toggle('light-theme');
   // save the theme preferences to local storage
-  const isLightTheme = body.classList.contains('light-theme')
-  localStorage.setItem('theme', isLightTheme ? 'light': 'dark')
+  const isLightTheme = body.classList.contains('light-theme');
+  localStorage.setItem('theme', isLightTheme ? 'light': 'dark');
+
+  elements.sideLogoLight.style.display = isLightTheme ? 'block' : 'none'; //NOTE!!
+  elements.sideLogoDark.style.display = isLightTheme ? 'none' : 'block';
  
 }
 function getTaskFromLocalStorage(taskId) {
@@ -308,6 +313,8 @@ function saveTaskChanges(taskId) {
   const descriptionUpdate = document.getElementById('edit-task-desc-input').value;
   const statusUpdate = document.getElementById('edit-select-status').value;
   
+  const previousTask = getTaskFromLocalStorage(taskId);
+  const previousStatus = previousTask.status;
 
   // Create an object with the updated task details
   const updatedTasks = {
@@ -319,7 +326,7 @@ function saveTaskChanges(taskId) {
 
   //Trigger fireworks when status is changed to "done"
 
-  if (statusUpdate === 'Done' && previousStatus !== 'Done') {
+  if (statusUpdate === 'done' && previousStatus !== 'done') {
     fireworkCelebration();
   }
 
@@ -361,6 +368,10 @@ function init() {
   toggleSidebar(showSidebar);
   const isLightTheme = localStorage.getItem('theme') === 'light';
   document.body.classList.toggle('light-theme', isLightTheme);
+
+  elements.sideLogoLight.style.display = isLightTheme ? 'block' : 'none'; //NOTE!!
+  elements.sideLogoDark.style.display = isLightTheme ? 'none' : 'block';
+
   fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
 }
 

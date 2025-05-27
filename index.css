@@ -6,8 +6,8 @@
 }
 
 :root {
-  --primary-color: #2b2f37;
-  --secondary-color: #21202c;
+  --primary-color: rgb(29, 19, 29);
+  --secondary-colorb: rgb(172, 52, 52) ;
   --primary-font-color: white;
   --secondary-font-color: #828fa3;
   --primary-box-shadow: 0px 8px 18px 0px rgba(45, 45, 60, 0.56);
@@ -48,18 +48,20 @@ body {
   /*  */
   background-color: var(--primary-color);
   /* border: 5px solid rgb(0, 0, 0); */
-  border-right: 0.1px solid #979797;
+  border-right: 0.1px solid #292525;
   /* flex: 0.8; */
   display: none;
   flex-direction: column;
   gap: 50px;
-  /* padding-left: 50px; */
+  /*padding-left: 50px; */
   padding-right: 20px;
+  padding-top: 20px;
   height: 100vh;
   /* overflow-x: hidden; */
   margin-right: 0;
   /* padding: 0 12px 0 26px; */
   width: 350px;
+  border-radius: 5%;
 }
 
 .boards-nav-links-div {
@@ -82,7 +84,7 @@ body {
   height: 40px;
   background-color: transparent;
   border: 0;
-  color: #219C90;
+  color: #515b5a;
   font-size: 16px;
   cursor: pointer;
   overflow: hidden;
@@ -117,7 +119,7 @@ body {
 }
 
 .active {
-  background-color: #219C90;
+  background-color: #91bcb8;
   color: white;
   font-weight: 500;
   padding: 28px 12px 28px 50px;
@@ -179,7 +181,7 @@ h4 {
   position: absolute;
   bottom: 45px;
   border-radius: 0 20px 20px 0;
-  background-color: #219C90;
+  background-color: black;
   display: flex;
   cursor: pointer;
 }
@@ -198,7 +200,14 @@ h4 {
   margin-top: 0;
 }
 
-#side-logo-div {
+#side-logo-div-dark {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 12px 0 50px;
+}
+
+#side-logo-div-light {
   margin-top: 40px;
   display: flex;
   justify-content: flex-start;
@@ -208,6 +217,15 @@ h4 {
 #logo {
   width: 90%;
 }
+
+.flower-border {
+  background: url('assets/flowerBorder.jpg') repeat;
+  padding: 20px;
+  border: 10px solid transparent; /* So padding doesn’t cover the background */
+  background-origin: border-box;
+  background-clip: border-box;
+}
+
 
 header {
   display: flex;
@@ -472,7 +490,7 @@ header {
 }
 
 #save-task-changes-btn {
-  background-color: #219C90;
+  background-color:#515b5a;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -674,7 +692,7 @@ input#edit-task-title-input.task-title-input {
 }
 
 .submit-btn {
-  background-color: #219C90;
+  background-color:#515b5a;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -755,7 +773,7 @@ input[type="checkbox"] {
   text-indent: -9999px;
   width: 55px;
   height: 23px;
-  background: #219c90;
+  background: #515b5a;
   display: block;
   border-radius: 100px;
   position: relative;
@@ -803,11 +821,11 @@ input:checked + #label-checkbox-theme:after {
 }
 
 @media screen and (max-width: 800px) {
-  /* .task-div {
+   .task-div {
         width: 450px;
-    } */
+    } 
 
-  /* .side-bar.show-sidebar {
+  .side-bar.show-sidebar {
     display: none !important;
   }
 
@@ -1340,8 +1358,6 @@ input:checked + #label-checkbox-theme:after {
     font-size: 1em;
   }
 }
-
-
 
 /* Laptops and Desktops */
 @media screen and (min-width: 1025px) {
