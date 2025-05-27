@@ -317,6 +317,11 @@ function saveTaskChanges(taskId) {
     board: activeBoard
   }
 
+  //Trigger fireworks when status is changed to "done"
+
+  if (statusUpdate === 'Done' && previousStatus !== 'Done') {
+    fireworkCelebration();
+  }
 
   // Update task using a helper function
   patchTask(taskId, updatedTasks);
@@ -325,6 +330,24 @@ function saveTaskChanges(taskId) {
   toggleModal(false, elements.editTaskModal);
   refreshTasksUI();
 }
+
+//Fireworks Function:
+
+function fireworkCelebration() {
+  for (let i = 0; i < 5; i++) {
+    setTimeout(() => {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: {
+          x: Math.random(),
+          y: Math.random() * 0.6
+        }
+      });
+    }, i * 300);
+  }
+}
+
 
 /*************************************************************************************************************************************************/
 
