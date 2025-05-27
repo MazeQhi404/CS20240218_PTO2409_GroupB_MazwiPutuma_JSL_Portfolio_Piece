@@ -1,7 +1,7 @@
 // TASK: import helper functions from utils
 // TASK: import initialData
 
-import {getTasks, createNewTask, putTask, deleteTask, patchTask, saveTasks} from './utils/taskFunctions.js';
+import {getTasks, createNewTask, deleteTask, patchTask} from './utils/taskFunctions.js';
 import {initialData} from './initialData.js';
 
 
@@ -185,7 +185,7 @@ function setupEventListeners() {
   });
 
   // Show sidebar event listener
-  elements.hideSideBarBtn.addEventListener('click', () => toggleSidebar(false));
+elements.hideSideBarBtn.addEventListener('click', () => toggleSidebar(false));
   elements.showSideBarBtn.addEventListener('click', () => toggleSidebar(true));
 
   // Theme switch event listener
@@ -287,6 +287,8 @@ function openEditTaskModal(taskId) {
     deleteTaskBtn.onclick = () => {
       deleteTask(taskId);
       toggleModal(false, elements.editTaskModal); 
+      elements.filterDiv.style.display = 'none'; //Hide Overlay
+      refreshTasksUI(); //Refresh tasks columns
     }
 
     cancelBtn.onclick = () => {
