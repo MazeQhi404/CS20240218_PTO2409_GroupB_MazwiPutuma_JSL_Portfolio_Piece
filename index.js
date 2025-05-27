@@ -221,8 +221,8 @@ function addTask(event) {
 
   //Assign user input to the task object
     const task = {
-      title: document.getElementById('modal-title-input').value,
-      description: document.getElementById('modal-desc-input').value,
+      title: document.getElementById('title-input').value,
+      description: document.getElementById('desc-input').value,
       status: document.getElementById('select-status').value, 
       board: activeBoard // bug: board assignment was missing   
     };
@@ -295,6 +295,7 @@ function openEditTaskModal(taskId) {
   }
 
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
+  elements.filterDiv.style.display = 'block'; //show filter overlay
 
 }
 
@@ -311,6 +312,7 @@ function saveTaskChanges(taskId) {
     title: titleUpdate,
     description: descriptionUpdate,
     status: statusUpdate,
+    board: activeBoard
   }
 
 
