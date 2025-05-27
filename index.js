@@ -106,7 +106,7 @@ function filterAndDisplayTasksByBoard(boardName) {
 
       // Listen for a click event on each task and open a modal
       taskElement.addEventListener('click', () => { 
-        openEditTaskModal(task);
+        openEditTaskModal(task.id);
       });
 
       tasksContainer.appendChild(taskElement);
@@ -207,7 +207,7 @@ function setupEventListeners() {
 function toggleModal(show, modal) { // bug: always toggles the NewTaskModel regardless of the model parameter
 
   modal.style.display = show ? 'block' : 'none'; 
-  elements.filterDiv.style.dsiplay = 'none'
+  elements.filterDiv.style.display = 'none'
 }
 
 /*************************************************************************************************************************************************
@@ -216,7 +216,7 @@ function toggleModal(show, modal) { // bug: always toggles the NewTaskModel rega
 
 function addTask(event) {
 
-  event.preventDefault();  //prevents the default behaviour of an event from occuring. prevents the browser from reloading the page and sending the form ata to the server.
+  event.preventDefault();  //prevents the default behaviour of an event from occuring. prevents the browser from reloading the page and sending the form data to the server.
 
   //Assign user input to the task object
     const task = {
@@ -262,44 +262,39 @@ function getTaskFromLocalStorage(taskId) {
 
 
 function openEditTaskModal(taskId) {
-const task = getTaskFromLocalStorage(taskId);
-if (task) {
- // Set task details in modal inputs
- const modalTitleInput = document.getElementById('edit-task-title-input');
- const modalDescriptionInput = document.getElementById('edit-task-desc-input');
- const modalStatusSelect = document.getElementById('edit-select-status');
+  const task = getTaskFromLocalStorage(taskId);
+  if (task) {
+    // Set task details in modal inputs
+    const modalTitleInput = document.getElementById('edit-task-title-input');
+    const modalDescriptionInput = document.getElementById('edit-task-desc-input');
+    const modalStatusSelect = document.getElementById('edit-select-status');
 
- modalTitleInput.value = task.title;
- modalDescriptionInput.value = task.description;
- modalStatusSelect.value = task.status;
+    modalTitleInput.value = task.title;
+    modalDescriptionInput.value = task.description;
+    modalStatusSelect.value = task.status;
+    // Get button elements from the task modal
+    const saveChangesBtn = document.getElementById('save-task-changes-btn');
+    const deleteTaskBtn = document.getElementById('delete-task-btn');
+    const cancelBtn = document.getElementById('cancel-edit-btn');
+    
+    // Call saveTaskChanges upon click of Save Changes button
+    saveChangesBtn.onclick = () => {
+      saveTaskChanges(taskId);
+    } 
 
- // Get button elements from the task modal
- const saveChangesBtn = document.getElementById('save-task-changes-btn');
- const deleteTaskBtn = document.getElementById('delete-task-btn');
- const cancelBtn = document.getElementById('cancel-edit-btn');
+    // Delete task using a helper function and close the task modal
+    deleteTaskBtn.onclick = () => {
+      deleteTask(taskId);
+      toggleModal(false, elements.editTaskModal); 
+    }
 
+    cancelBtn.onclick = () => {
+      toggleModal(false, elements.editTaskModal); 
+    }
+  }
 
- // Call saveTaskChanges upon click of Save Changes button
- saveChangesBtn.onclick = () => {
-  saveTaskChanges(task.id);
+  toggleModal(true, elements.editTaskModal); // Show the edit task modal
 
- } 
-
- // Delete task using a helper function and close the task modal
-
- deleteTaskBtn.onclick = () => {
-   deleteTask(taskId)
-   toggleModal(false, elements.editTaskModal); 
- };
-
- cancelBtn.onclick = () => {
-   toggleModal(false, elements.editTaskModal); 
- }
-
-
-}
-
-toggleModal(true, elements.editTaskModal); // Show the edit task modal
 }
 
 function saveTaskChanges(taskId) {
