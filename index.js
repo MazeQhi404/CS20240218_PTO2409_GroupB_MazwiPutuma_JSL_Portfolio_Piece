@@ -329,9 +329,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function init() {
   setupEventListeners();
-  const showSidebar = localStorage.getItem('showSidebar') === 'true';
+  const showSidebar = localStorage.getItem('showSideBar') === 'true';
   toggleSidebar(showSidebar);
-  const isLightTheme = localStorage.getItem('light-theme') === 'enabled';
+  const isLightTheme = localStorage.getItem('theme') === 'light';
   document.body.classList.toggle('light-theme', isLightTheme);
   fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
 }
