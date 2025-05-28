@@ -6,8 +6,8 @@
 }
 
 :root {
-  --primary-color: rgb(29, 19, 29);
-  --secondary-colorb: rgb(172, 52, 52) ;
+  --primary-color: rgb(27, 21, 21);
+  --secondary-color: rgb(24, 22, 22) ;
   --primary-font-color: white;
   --secondary-font-color: #828fa3;
   --primary-box-shadow: 0px 8px 18px 0px rgba(45, 45, 60, 0.56);
@@ -19,6 +19,10 @@
   --primary-font-color: #000000;
   --secondary-font-color: #828fa3;
   --primary-box-shadow: 0px 8px 18px 0px rgba(176, 176, 188, 0.56);
+  background-image: url(assets/LightThemeBG.jpg);
+  background-size: 1000px;
+  background-repeat: repeat-x;
+  background-position-x: center;
 }
 
 body {
@@ -31,6 +35,10 @@ body {
   background-color: var(--secondary-color);
   box-sizing: border-box;
   width: 100%;
+  background-image: url(assets/MainDivBG2.jpg);
+  background-repeat: repeat;
+  background-size: 1450px;
+  
 }
 
 #layout {
@@ -46,9 +54,9 @@ body {
 
 .side-bar {
   /*  */
-  background-color: var(--primary-color);
+  /*background-color: var(--primary-color);*/
   /* border: 5px solid rgb(0, 0, 0); */
-  border-right: 0.1px solid #292525;
+  border: 2px solid #292525;
   /* flex: 0.8; */
   display: none;
   flex-direction: column;
@@ -56,12 +64,37 @@ body {
   /*padding-left: 50px; */
   padding-right: 20px;
   padding-top: 20px;
-  height: 100vh;
+  height: 70vh;
   /* overflow-x: hidden; */
   margin-right: 0;
   /* padding: 0 12px 0 26px; */
   width: 350px;
-  border-radius: 5%;
+  border-radius: 7%;
+  background-image: url(assets/flowerBorder.jpg);
+  
+}
+
+.side-bar-light {
+   /*  */
+  /*background-color: var(--primary-color);*/
+  /* border: 5px solid rgb(0, 0, 0); */
+  border: 2px solid #292525;
+  /* flex: 0.8; */
+  display: none;
+  flex-direction: column;
+  gap: 50px;
+  /*padding-left: 50px; */
+  padding-right: 20px;
+  padding-top: 20px;
+  height: 70vh;
+  /* overflow-x: hidden; */
+  margin-right: 0;
+  /* padding: 0 12px 0 26px; */
+  width: 300px;
+  border-radius: 7%;
+  background-image: url(assets/lightFlower.webp);
+  background-size: 100px;
+  background-repeat: repeat;
 }
 
 .boards-nav-links-div {
@@ -70,6 +103,7 @@ body {
   color: var(--primary-font-color);
   gap: 18px;
   height: 200px;
+
 }
 
 #create-board-btn {
@@ -84,7 +118,7 @@ body {
   height: 40px;
   background-color: transparent;
   border: 0;
-  color: #515b5a;
+  color: purple;
   font-size: 16px;
   cursor: pointer;
   overflow: hidden;
@@ -184,6 +218,7 @@ h4 {
   background-color: black;
   display: flex;
   cursor: pointer;
+  box-shadow: var(--primary-box-shadow);
 }
 
 #hide-side-bar-btn {
@@ -219,7 +254,7 @@ h4 {
 }
 
 .flower-border {
-  background: url('assets/flowerBorder.jpg') repeat;
+  background: none;
   padding: 20px;
   border: 10px solid transparent; /* So padding doesn’t cover the background */
   background-origin: border-box;
@@ -232,12 +267,12 @@ header {
   justify-content: center;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--primary-color);
+  /*background-color: var(--primary-color);*/
   height: 100px;
   /* border: 5px solid rgb(29, 220, 237); */
   padding-left: 30px;
   padding-right: 35px;
-  border-bottom: 0.1px solid #979797;
+  border-bottom: 0.2px solid black;
   width: 100%;
   right: 0;
   color: var(--primary-font-color);
@@ -245,10 +280,11 @@ header {
   font-weight: 600;
   box-sizing: border-box;
   position: relative;
+  background: none;
 }
 
 #add-new-task-btn {
-  background-color: #219C90;
+  background-color: #91bcb8;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -303,6 +339,7 @@ header {
   box-shadow: var(--primary-box-shadow);
   cursor: pointer;
   margin-bottom: 15px;
+  background-image: url(assets/MainDivBG2.jpg);
 }
 
 .p-task {
@@ -344,7 +381,7 @@ header {
 }
 
 #cancel-add-task-btn {
-  background-color: #ea5555;
+  background-color: black;
 }
 
 #edit-task-header {
@@ -416,7 +453,7 @@ header {
   flex-direction: column;
   padding: 30px;
   gap: 20px;
-  background-color: var(--primary-color);
+  background-image: url(assets/flowerBorder.jpg);
   font-weight: 500;
   font-size: 14px;
   border-radius: 10px;
@@ -490,7 +527,7 @@ header {
 }
 
 #save-task-changes-btn {
-  background-color:#515b5a;
+  background-color: #91bcb8;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -500,17 +537,18 @@ header {
 }
 
 #cancel-edit-btn {
-  background-color:#E9B824;
+  background-color:#ac8100;
   color: white;
   border-radius: 30px;
   border: 0;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  border: #000000;
 }
 
 #delete-task-btn {
-  background-color:#ea5555;
+  background-color: black;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -559,7 +597,7 @@ header {
 }
 
 #deleteTaskBtn {
-  color: #ea5555;
+  color: black;
 }
 
 h2 {
@@ -692,7 +730,7 @@ input#edit-task-title-input.task-title-input {
 }
 
 .submit-btn {
-  background-color:#515b5a;
+  background-color:#91bcb8;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -745,7 +783,7 @@ input {
 .toggle-div {
   display: flex;
   justify-content: center;
-  background-color: var(--secondary-color);
+  background-color: black;
   padding: 15px;
   border-radius: 10px;
   margin-left: 50px;

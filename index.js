@@ -252,15 +252,27 @@ function toggleSidebar(show) {
 
 function toggleTheme() {
   const body = document.body; // references to body element
+  const sidebar = document.getElementById('side-bar-div')
   body.classList.toggle('light-theme');
-  // save the theme preferences to local storage
+ 
   const isLightTheme = body.classList.contains('light-theme');
+  
+  if(isLightTheme) {
+    sidebar.classList.add('side-bar-light');
+    sidebar.classList.remove('side-bar')
+  } else {
+    sidebar.classList.add('side-bar');
+    sidebar.classList.remove('side-bar-light')
+  }
+
+   // save the theme preferences to local storage
   localStorage.setItem('theme', isLightTheme ? 'light': 'dark');
 
   elements.sideLogoLight.style.display = isLightTheme ? 'block' : 'none'; //NOTE!!
   elements.sideLogoDark.style.display = isLightTheme ? 'none' : 'block';
  
 }
+
 function getTaskFromLocalStorage(taskId) {
   const tasks = JSON.parse(localStorage.getItem('tasks'));
   return tasks.find((task) => String(task.id) === String(taskId)); //taskId passed to it might be a string
