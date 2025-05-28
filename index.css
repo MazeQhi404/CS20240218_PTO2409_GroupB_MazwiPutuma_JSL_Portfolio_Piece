@@ -223,6 +223,12 @@ h4 {
   box-shadow: var(--primary-box-shadow);
 }
 
+.visibility-side-bar-img {
+  width: 35px;
+  height: 30px;
+  border-radius: 100%;
+}
+
 #hide-side-bar-btn {
   font-family: inherit;
   color: var(--primary-font-color);
