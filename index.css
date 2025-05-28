@@ -360,7 +360,8 @@ header {
   padding-left: 15px;
   width: 100%;
   background-color: white;
-  color: var(--primary-font-color);
+  color: black;
+  /*font-weight: bolder;*/
   height: 90px;
   border-radius: 12px;
   box-shadow: var(--primary-box-shadow);
