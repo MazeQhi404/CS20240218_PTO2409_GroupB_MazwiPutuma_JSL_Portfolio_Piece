@@ -20,9 +20,9 @@
   --secondary-font-color: #828fa3;
   --primary-box-shadow: 0px 8px 18px 0px rgba(176, 176, 188, 0.56);
   background-image: url(assets/LightThemeBG.jpg);
-  background-size: 1000px;
-  background-repeat: repeat-x;
-  background-position-x: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed ;
 }
 
 body {
@@ -93,7 +93,7 @@ body {
   width: 300px;
   border-radius: 7%;
   background-image: url(assets/lightFlower.webp);
-  background-size: 100px;
+  background-size: 1500px;
   background-repeat: repeat;
 }
 
@@ -205,6 +205,8 @@ h4 {
   flex-direction: row;
   justify-content: flex-start;
   margin-left: 50px;
+  background-color: #21202c;
+  border-radius: 5%;
 }
 
 #show-side-bar-btn {
@@ -226,8 +228,9 @@ h4 {
   color: var(--primary-font-color);
   background-color: transparent;
   border: 0;
-  color: var(--secondary-font-color);
+  color: white;
   cursor: pointer;
+
 }
 
 h4 {
@@ -340,6 +343,26 @@ header {
   cursor: pointer;
   margin-bottom: 15px;
   background-image: url(assets/MainDivBG2.jpg);
+}
+
+.task-div-light {
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-left: 15px;
+  width: 100%;
+  background-color: white;
+  color: var(--primary-font-color);
+  height: 90px;
+  border-radius: 12px;
+  box-shadow: var(--primary-box-shadow);
+  cursor: pointer;
+  margin-bottom: 15px;
+  background-image: url(assets/LightThemeBG.jpg);
+  background-size: 95px;
+
 }
 
 .p-task {

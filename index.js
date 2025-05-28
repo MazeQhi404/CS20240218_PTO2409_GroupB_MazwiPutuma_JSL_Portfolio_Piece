@@ -257,6 +257,7 @@ function toggleTheme() {
  
   const isLightTheme = body.classList.contains('light-theme');
   
+  // Theme toggle for Side Bar:
   if(isLightTheme) {
     sidebar.classList.add('side-bar-light');
     sidebar.classList.remove('side-bar')
@@ -264,6 +265,19 @@ function toggleTheme() {
     sidebar.classList.add('side-bar');
     sidebar.classList.remove('side-bar-light')
   }
+
+  //Theme toggle for Task Divs
+
+  document.querySelectorAll('.task-div').forEach(task => {
+  if (isLightTheme) {
+    task.classList.add('task-div-light');
+    task.classList.remove('task-div-dark');
+  } else {
+    task.classList.add('task-div-dark');
+    task.classList.remove('task-div-light');
+  }
+});
+
 
    // save the theme preferences to local storage
   localStorage.setItem('theme', isLightTheme ? 'light': 'dark');
@@ -375,14 +389,34 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function init() {
+  const savedTheme = localStorage.getItem('theme');
+  const body = document.body;
+  const sidebar = document.getElementById('side-bar-div');
+
+   if (savedTheme === 'light') {
+    body.classList.add('light-theme');
+    sidebar.classList.add('side-bar-light');
+    sidebar.classList.remove('side-bar-dark');
+
+    elements.sideLogoLight.style.display = 'block';
+    elements.sideLogoDark.style.display = 'none';
+  } else {
+    body.classList.remove('light-theme');
+    sidebar.classList.add('side-bar-dark');
+    sidebar.classList.remove('side-bar-light');
+
+    elements.sideLogoLight.style.display = 'none';
+    elements.sideLogoDark.style.display = 'block';
+  }
+
   setupEventListeners();
   const showSidebar = localStorage.getItem('showSideBar') === 'true';
   toggleSidebar(showSidebar);
   const isLightTheme = localStorage.getItem('theme') === 'light';
   document.body.classList.toggle('light-theme', isLightTheme);
 
-  elements.sideLogoLight.style.display = isLightTheme ? 'block' : 'none'; //NOTE!!
-  elements.sideLogoDark.style.display = isLightTheme ? 'none' : 'block';
+ /* elements.sideLogoLight.style.display = isLightTheme ? 'block' : 'none'; //NOTE!!
+  elements.sideLogoDark.style.display = isLightTheme ? 'none' : 'block';*/
 
   fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
 }
