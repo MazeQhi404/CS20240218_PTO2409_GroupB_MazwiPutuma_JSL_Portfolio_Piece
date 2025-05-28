@@ -17,12 +17,13 @@
   --primary-color: #ffffff;
   --secondary-color: #e6e6e6;
   --primary-font-color: #000000;
-  --secondary-font-color: #828fa3;
+  --secondary-font-color: #575e68;
   --primary-box-shadow: 0px 8px 18px 0px rgba(176, 176, 188, 0.56);
   background-image: url(assets/LightThemeBG.jpg);
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-attachment: fixed ;
+  font-weight: bolder;
 }
 
 body {
@@ -356,6 +357,7 @@ header {
   align-items: center;
   flex-wrap: wrap;
   padding-left: 15px;
+  padding-right: 37px;
   width: 100%;
   background-color: white;
   color: black;
@@ -365,8 +367,10 @@ header {
   box-shadow: var(--primary-box-shadow);
   cursor: pointer;
   margin-bottom: 15px;
-  background-image: url(assets/lightFlower.webp);
-  background-size: 1000px;
+  background-image: url(assets/lightFlowerTaskDiv.jpeg);
+  background-size: 38px;
+  background-repeat: repeat-y ;
+  background-position: right;
 
 }
 
@@ -508,7 +512,7 @@ header {
 }
 
 .edit-task-modal-window-light {
-   position: fixed;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -517,6 +521,8 @@ header {
   padding: 30px;
   gap: 20px;
   background-image: url(assets/LightThemeBG.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
   font-weight: 500;
   font-size: 14px;
   border-radius: 10px;
@@ -527,7 +533,7 @@ header {
 }
 
 .edit-task-modal-window-dark {
-   position: fixed;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

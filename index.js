@@ -349,6 +349,12 @@ function openEditTaskModal(taskId) {
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
   elements.filterDiv.style.display = 'block'; //show filter overlay
 
+  elements.filterDiv.addEventListener('click', () => {
+    toggleModal(false, elements.modalWindow);
+    toggleModal(false, elements.editTaskModal);
+    elements.filterDiv.style.display = 'none'; // Also hide the filter overlay
+  });
+
 }
 
 function saveTaskChanges(taskId) {
