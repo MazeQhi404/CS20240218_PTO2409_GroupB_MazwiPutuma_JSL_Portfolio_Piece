@@ -111,8 +111,8 @@ function filterAndDisplayTasksByBoard(boardName) {
       taskElement.addEventListener('click', () => { 
         openEditTaskModal(task.id);
       });
-
       tasksContainer.appendChild(taskElement);
+      applyThemeToTaskDivs();
     });
   });
 }
@@ -158,8 +158,10 @@ function addTaskToUI(task) {
 
   taskElement.addEventListener('click', () => {
     openEditTaskModal(task.id);
-  })
-  
+  });
+
+  applyThemeToTaskDivs();
+
   tasksContainer.appendChild(taskElement); 
 }
 
@@ -266,25 +268,42 @@ function toggleTheme() {
     sidebar.classList.remove('side-bar-light')
   }
 
-  //Theme toggle for Task Divs
+  //Theme change for Edit Task Modal:
+  elements.editTaskModal.classList.remove('edit-task-modal-window-light', 'edit-task-modal-window-dark');
 
-  document.querySelectorAll('.task-div').forEach(task => {
+  // Keep the base class
+  elements.editTaskModal.classList.add('edit-task-modal-window');
+
   if (isLightTheme) {
-    task.classList.add('task-div-light');
-    task.classList.remove('task-div-dark');
+    elements.editTaskModal.classList.add('edit-task-modal-window-light');
   } else {
-    task.classList.add('task-div-dark');
-    task.classList.remove('task-div-light');
+    elements.editTaskModal.classList.add('edit-task-modal-window-dark');
   }
-});
+  //Apply Theme to Tasks Divs, call function:
+  applyThemeToTaskDivs();
 
-
-   // save the theme preferences to local storage
+  // save the theme preferences to local storage
   localStorage.setItem('theme', isLightTheme ? 'light': 'dark');
 
   elements.sideLogoLight.style.display = isLightTheme ? 'block' : 'none'; //NOTE!!
   elements.sideLogoDark.style.display = isLightTheme ? 'none' : 'block';
  
+}
+
+function applyThemeToTaskDivs() {
+  const isLightTheme = document.body.classList.contains('light-theme');
+  document.querySelectorAll('.task-div').forEach(task => {
+
+    //Remove both theme classes first to prevent style clashing
+    task.classList.remove('task-div-dark', 'task-div-light');
+
+    if (isLightTheme) {
+      task.classList.add('task-div-light');
+    } else {
+      task.classList.add('task-div-dark');
+     
+    }
+  });
 }
 
 function getTaskFromLocalStorage(taskId) {
@@ -400,6 +419,7 @@ function init() {
 
     elements.sideLogoLight.style.display = 'block';
     elements.sideLogoDark.style.display = 'none';
+
   } else {
     body.classList.remove('light-theme');
     sidebar.classList.add('side-bar-dark');
@@ -419,6 +439,8 @@ function init() {
   elements.sideLogoDark.style.display = isLightTheme ? 'none' : 'block';*/
 
   fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
+  applyThemeToTaskDivs();
+
 }
 
 
