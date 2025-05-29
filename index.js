@@ -90,7 +90,7 @@ function filterAndDisplayTasksByBoard(boardName) {
 
   // Ensure the column titles are set outside of this function or correctly initialized before this function runs
 
-  (elements.columnDivs).forEach(column => {
+  elements.columnDivs.forEach(column => {
     const status = column.getAttribute("data-status");
     // Reset column content while preserving the column title
     column.innerHTML = `<div class="column-head-div">
@@ -99,7 +99,7 @@ function filterAndDisplayTasksByBoard(boardName) {
                         </div>`;
 
     const tasksContainer = document.createElement("div");
-    tasksContainer.className = 'tasks-container';
+    //tasksContainer.className = 'tasks-container'; //omitted classname assignment.
     column.appendChild(tasksContainer);
 
     filteredTasks.filter(task => task.status === status).forEach(task => { 
@@ -129,7 +129,7 @@ function styleActiveBoard(boardName) {
   document.querySelectorAll('.board-btn').forEach(btn => { 
     
     if(btn.textContent === boardName) {
-      btn.classList.add('active') 
+      btn.classList.add('active') // classList method was omitted
     }
     else {
       btn.classList.remove('active'); 
@@ -142,6 +142,7 @@ function addTaskToUI(task) {
   const column = document.querySelector(`.column-div[data-status="${task.status}"]`); 
   if (!column) {
     console.error(`Column not found for status: ${task.status}`);
+    return;
   }
 
   let tasksContainer = column.querySelector('.tasks-container');
@@ -210,9 +211,12 @@ function setupEventListeners() {
 
 // Toggles tasks modal
 // Task: Fix bugs
-function toggleModal(show, modal) { // bug: always toggles the NewTaskModel regardless of the model parameter
+function toggleModal(show, modal = elements.modalWindow) { // bug: always toggles the NewTaskModel regardless of the model parameter
 
   modal.style.display = show ? 'block' : 'none'; 
+  
+  //🌸 
+
   elements.filterDiv.style.display = 'none'
 }
 
