@@ -180,7 +180,7 @@ function setupEventListeners() {
   // Cancel adding new task event listener
   const cancelAddTaskBtn = document.getElementById('cancel-add-task-btn');
   cancelAddTaskBtn.addEventListener('click', () => {
-    toggleModal(false, elements.newTaskModal);
+    toggleModal(false, elements.newTaskModal); // 🪲
     elements.filterDiv.style.display = 'none'; // Also hide the filter overlay
   });
 
@@ -215,7 +215,7 @@ function setupEventListeners() {
 // Task: Fix bugs
 function toggleModal(show, modal = elements.modalWindow) { // bug: always toggles the NewTaskModel regardless of the model parameter
 
-  modal.style.display = show ? 'block' : 'none';  //🪲 #7
+  modal.style.display = show ? 'block' :'none';  //🪲 #7
 
   elements.filterDiv.style.display = 'none'
 }
