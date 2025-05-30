@@ -1,6 +1,8 @@
 // TASK: import helper functions from utils
 // TASK: import initialData
 
+//🌸 Imported task utility functions and initial data from separate modules
+
 import {getTasks, createNewTask, deleteTask, patchTask} from './utils/taskFunctions.js';
 import {initialData} from './initialData.js';
 
@@ -26,7 +28,7 @@ initializeData();
 //NOTES:
 //'tasks' is a string literal used as a key to store and retrieve data in local storage. it is a lael or identifier for the data being stored
 
-// TASK: Get elements from the DOM
+// TASK: Get elements from the DOM 🌸
 const elements = {
 headerBoardName: document.getElementById('header-board-name'),
 columnDivs: document.querySelectorAll('.column-div'),
@@ -70,7 +72,7 @@ function displayBoards(boards) {
     const boardElement = document.createElement("button");
     boardElement.textContent = board;
     boardElement.classList.add("board-btn");
-    boardElement.addEventListener( 'click', () => { 
+    boardElement.addEventListener( 'click', () => {  //🪲 #1
       elements.headerBoardName.textContent = board;
       filterAndDisplayTasksByBoard(board);
       activeBoard = board //assigns active board
@@ -86,7 +88,7 @@ function displayBoards(boards) {
 // TASK: Fix Bugs
 function filterAndDisplayTasksByBoard(boardName) {
   const tasks = getTasks(); // Fetch tasks from a simulated local storage function
-  const filteredTasks = tasks.filter(task => task.board === boardName); // gives an array containing only the board names and assigns the value to board name?
+ /*🪲 #2 */ const filteredTasks = tasks.filter(task => task.board === boardName); //  gives an array containing only the board names and assigns the value to board name?
 
   // Ensure the column titles are set outside of this function or correctly initialized before this function runs
 
@@ -126,10 +128,10 @@ function refreshTasksUI() {
 // Styles the active board by adding an active class
 // TASK: Fix Bugs
 function styleActiveBoard(boardName) {
-  document.querySelectorAll('.board-btn').forEach(btn => { 
+  document.querySelectorAll('.board-btn').forEach(btn => { //🪲 #3
     
     if(btn.textContent === boardName) {
-      btn.classList.add('active') // classList method was omitted
+      btn.classList.add('active') // classList method was omitted 🪲 #4
     }
     else {
       btn.classList.remove('active'); 
@@ -158,7 +160,7 @@ function addTaskToUI(task) {
   taskElement.textContent = task.title; // Modify as needed
   taskElement.setAttribute('data-task-id', task.id);
 
-  taskElement.addEventListener('click', () => {
+  taskElement.addEventListener('click', () => { //🪲 #5 missing event listner
     openEditTaskModal(task.id);
   });
 
@@ -199,7 +201,7 @@ function setupEventListeners() {
 
   // Show Add New Task Modal event listener
   elements.createNewTaskBtn.addEventListener('click', () => {
-    toggleModal(true, elements.newTaskModal);
+    toggleModal(true, elements.newTaskModal); //🪲 #6 not specified modal window
     elements.filterDiv.style.display = 'block'; // Also show the filter overlay
   });
 
@@ -213,7 +215,7 @@ function setupEventListeners() {
 // Task: Fix bugs
 function toggleModal(show, modal = elements.modalWindow) { // bug: always toggles the NewTaskModel regardless of the model parameter
 
-  modal.style.display = show ? 'block' : 'none';  
+  modal.style.display = show ? 'block' : 'none';  //🪲 #7
 
   elements.filterDiv.style.display = 'none'
 }
