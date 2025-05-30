@@ -213,9 +213,7 @@ function setupEventListeners() {
 // Task: Fix bugs
 function toggleModal(show, modal = elements.modalWindow) { // bug: always toggles the NewTaskModel regardless of the model parameter
 
-  modal.style.display = show ? 'block' : 'none'; 
-  
-  //🌸 
+  modal.style.display = show ? 'block' : 'none';  
 
   elements.filterDiv.style.display = 'none'
 }
