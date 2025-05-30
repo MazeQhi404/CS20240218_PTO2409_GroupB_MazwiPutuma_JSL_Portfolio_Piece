@@ -352,7 +352,7 @@ function openEditTaskModal(taskId) {
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
   elements.filterDiv.style.display = 'block'; //show filter overlay
 
-  elements.filterDiv.addEventListener('click', () => {
+  elements.filterDiv.addEventListener('click', () => { // closes both overlay and modal when user clicks outside of modal
     toggleModal(false, elements.modalWindow);
     toggleModal(false, elements.editTaskModal);
     elements.filterDiv.style.display = 'none'; // Also hide the filter overlay
